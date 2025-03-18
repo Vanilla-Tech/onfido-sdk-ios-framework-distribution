@@ -5,10 +5,10 @@ Pod::Spec.new do |spec|
   spec.version      = "0.0.1"
   spec.summary      = "iOS framework for Onfido"
   spec.description  = "This is framework for Onfido Wrapper."
-  spec.homepage     = "https://github.com/yourusername/MyFramework"
-  spec.license      = { :type => "MIT", :file => "LICENSE" }
+  spec.homepage     = "git@github.com:Vanilla-Tech/onfido-sdk-ios-framework-distribution.git"
+  spec.license      = { :type => "private" }
   spec.author       = { "Suresh Byanjankar" => "suresh@8squarei.com.com" }
-  spec.source       = { :git => "https://github.com/yourusername/MyFramework.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "ssh://git@github.com:Vanilla-Tech/onfido-sdk-ios-framework-distribution.git", :tag => "#{spec.version}" }
   spec.swift_version = "5.0"
   spec.source_files  = "Sources/**/*.{h,m,swift}"
   spec.framework    = "Foundation"
