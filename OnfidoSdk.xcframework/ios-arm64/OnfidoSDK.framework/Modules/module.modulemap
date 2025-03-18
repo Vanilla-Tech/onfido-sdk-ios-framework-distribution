@@ -1,0 +1,6 @@
+framework module OnfidoSDK {
+  umbrella header "OnfidoSDK.h"
+  export *
+
+  module * { export * }
+}

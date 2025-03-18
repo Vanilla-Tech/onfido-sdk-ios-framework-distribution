@@ -1,0 +1,156 @@
+{
+  "document_capture": {
+    "auto_capture": {
+      "enabled": false,
+      "manual_fallback_show_timeout": 10000
+    },
+    "features": [],
+    "nfc": {
+      "read_retry": true,
+      "enable_can_entry_screen": false,
+      "max_retries": 3,
+      "access_control": {
+        "mechanism": "auto",
+        "fallback": {
+          "enabled": true,
+          "max_retries": 10,
+          "polling_ms": 100
+        },
+        "ios_pace_polling": true
+      }
+    },
+    "processors": {
+      "barcode": {
+        "config": { "type": "barcodes" },
+        "type": "vision"
+      },
+      "blur": {
+        "config": { "pixels": 307200 },
+        "type": "blur"
+      },
+      "document": {
+        "config": {
+          "label_map": [ "back", "front" ],
+          "model_url": "https://d19xpeczeo7tzg.cloudfront.net/documentDetector.mlmodel",
+          "prediction_image_size": 320
+        },
+        "fallback": "document-fallback",
+        "type": "bboxML"
+      },
+      "document-fallback": {
+        "config": {
+          "rect": {
+            "min_confidence": 0.2,
+            "max_observations": 8,
+            "min_aspect_ratio": 0.4,
+            "max_aspect_ratio": 1.0,
+            "quad_tolerance": 30
+          },
+          "text": {
+            "enabled": false,
+            "min_confidence": 0.8
+          }
+        },
+        "type": "bboxVision"
+      },
+      "face": {
+        "config": { "type": "faceRectangle" },
+        "type": "vision"
+      },
+      "mrz": {
+        "config": { "type": "textRectangles" },
+        "type": "vision"
+      }
+    },
+    "validators": {
+      "barcode": {
+        "config": { ">": 0, "min_confidence": 0.7 },
+        "feature": "barcode",
+        "type": "value"
+      },
+      "blur": {
+        "config": { ">": 150 },
+        "type": "value"
+      },
+      "document": {
+        "config": {
+          "detection_threshold": 0.5,
+          "min_width": 0.70,
+          "max_width": 0.95,
+          "min_height": 0.7
+        },
+        "type": "document"
+      },
+      "face": {
+        "config": { ">": 0 },
+        "feature": "face",
+        "type": "value"
+      },
+      "mrz": {
+        "config": {
+          "min_chars": [ 26, 30, 35 ],
+          "min_lines": [ 3, 2, 2 ]
+        },
+        "feature": "mrz",
+        "type": "mrz"
+      }
+    },
+    "validations": [ "blur", "document", "face", "barcode", "mrz" ],
+    "scoped_configs": [{
+      "scope": { "type": ["DLD", "NIC", "PPO"] },
+      "config": { "auto_capture": { "enabled": true }}
+    }, {
+      "scope": { "side": "front", "type": "PPO" },
+      "config": { "features": [ "face", "mrz:3" ]}
+    }, {
+      "scope": { "side": "front", "type": [ "DLD", "NIC", "REP", "VIS", "WKP" ]},
+      "config": { "features": [ "face" ]}
+    }, {
+      "scope": { "country": [ "USA", "CAN" ], "side": "back", "type": "DLD" },
+      "config": { "features": [ "barcode:pdf417" ]}
+    }, {
+      "scope": { "country": "NLD", "side": "back", "type": "NIC" },
+      "config": { "features": [ "mrz:1" ]}
+    }, {
+      "scope": { "mode": "manual" },
+      "config": { "validations": [ "blur", "face", "barcode", "mrz" ]}
+    }, {
+      "scope": { "stage": "post" },
+      "config": { "validations": [ "blur", "face", "barcode", "mrz" ]}
+    }, {
+      "scope": { "type": "PPO" },
+      "config": { "processors": { "document": { "fallback": null }}}
+    }, {
+      "scope": { "type": "NIC", "country": "ROU", "side": "back" },
+      "config": {
+        "auto_capture": { "enabled": false },
+        "validations": []
+      }
+    }, {
+      "scope": { "type": "PPO" },
+      "config": { "nfc": { "access_control": {
+        "ios_pace_polling": false,
+        "fallback": { "enabled": false }
+      }}}
+    }, {
+      "scope": { "type": "PPO", "country": ["DEU", "NLD"] },
+      "config": { "nfc": { "access_control": {
+          "mechanism": "pace",
+          "ios_pace_polling": false,
+          "fallback": { "enabled": true }
+      }}}
+    } , {
+      "scope": { "type": ["NIC", "REP"], "country": ["FRA", "HUN", "POL"] },
+      "config": { "nfc": { "access_control": { "ios_pace_polling": true }}}
+    }, {
+      "scope": { "type": ["NIC", "REP"], "country": ["ARE", "DEU", "ITA", "LVA", "MNE", "NLD"] },
+      "config": { "nfc": { "access_control": { "ios_pace_polling": false }}}
+    }, {
+      "scope": { "type": ["NIC", "REP"], "country": ["ITA"] },
+      "config": { "nfc": { "access_control": { "mechanism": "bac" }}}
+    }, {
+      "scope": { "type": ["NIC", "REP"], "country": ["ARE"] },
+      "config": { "nfc": { "access_control": { "mechanism": "pace" }}}
+    }]
+  }
+}

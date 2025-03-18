@@ -1,0 +1,1009 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name Onfido
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import AVFoundation.AVCaptureSession
+import AVFoundation
+import AVKit
+import AudioToolbox
+import AuthenticationServices
+import CommonCrypto
+import CoreFoundation
+import CoreHaptics
+import CoreImage
+import CoreML
+import CoreNFC
+import CoreTelephony
+import CryptoKit
+import CryptoTokenKit
+import DeveloperToolsSupport
+import Foundation
+import MetricKit
+import MobileCoreServices
+import OSLog
+@_exported import Onfido
+import Swift
+import SwiftUI
+import SystemConfiguration
+import UIKit.UIApplication
+import UIKit.UIDevice
+import UIKit
+import UIKit.UIViewController
+import Vision
+import WebKit
+import _Concurrency
+import _CoreNFC_UIKit
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct AddressResult : Swift.Decodable, Swift.CustomStringConvertible {
+  public let flatNumber: Swift.String?
+  public let buildingNumber: Swift.String?
+  public let buildingName: Swift.String?
+  public let street: Swift.String?
+  public let subStreet: Swift.String?
+  public let town: Swift.String?
+  public let state: Swift.String?
+  public let postcode: Swift.String?
+  public let country: Swift.String?
+  public let startDate: Foundation.Date?
+  public let endDate: Foundation.Date?
+  public var description: Swift.String {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @objc(ONAppearance) final public class Appearance : ObjectiveC.NSObject {
+  @objc final public var primaryColor: UIKit.UIColor
+  @objc final public var primaryTitleColor: UIKit.UIColor
+  @objc final public var secondaryTitleColor: UIKit.UIColor?
+  @objc final public var primaryBackgroundPressedColor: UIKit.UIColor
+  @objc final public var secondaryBackgroundPressedColor: UIKit.UIColor
+  @objc final public var backgroundColor: Onfido.BackgroundColor
+  @objc final public var captureSuccessColors: Onfido.CaptureSuccessColors
+  @objc final public var fontRegular: Swift.String?
+  @objc final public var fontBold: Swift.String?
+  @objc final public var buttonCornerRadius: CoreFoundation.CGFloat
+  @objc final public func setUserInterfaceStyle(_ style: UIKit.UIUserInterfaceStyle)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public struct ApplicantResult : Swift.Decodable, Swift.CustomStringConvertible {
+  public let id: Swift.String
+  public let createdAt: Foundation.Date
+  public let href: Swift.String
+  public let title: Swift.String?
+  public let firstName: Swift.String
+  public let lastName: Swift.String
+  public let middleName: Swift.String?
+  public let email: Swift.String?
+  public let gender: Swift.String?
+  public let dateOfBirth: Foundation.Date?
+  public let telephone: Swift.String?
+  public let mobile: Swift.String?
+  public let country: Swift.String?
+  public let idNumbers: [Onfido.IdNumberResult]?
+  public let addresses: [Onfido.AddressResult]?
+  public var description: Swift.String {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @objc(ONBackgroundColor) final public class BackgroundColor : ObjectiveC.NSObject {
+  final public var lightBackgroundColor: UIKit.UIColor
+  final public var darkBackgroundColor: UIKit.UIColor
+  @objc override dynamic public init()
+  @objc public init(lightColor: UIKit.UIColor, darkColor: UIKit.UIColor)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class BaseDocumentConfiguration : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum CancellationReason : Swift.Int {
+  case userExit, deniedConsent, requiredNFCFlowNotCompleted
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc(ONCaptureSuccessColors) final public class CaptureSuccessColors : ObjectiveC.NSObject {
+  @objc final public var borderColor: UIKit.UIColor
+  @objc final public var tickViewImageTintColor: UIKit.UIColor
+  @objc final public var tickViewBackgroundColor: UIKit.UIColor
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc(ONCertificatePinningConfiguration) final public class CertificatePinningConfiguration : ObjectiveC.NSObject {
+  @objc final public let hashes: [Swift.String]
+  @objc public init(hashes: [Swift.String]) throws
+  @objc deinit
+}
+@available(iOS 13, macOS 10.15, *)
+public enum DocTypeEnum : Swift.String {
+  case TD1
+  case TD2
+  case OTHER
+  public init?(rawValue: Swift.String)
+  @available(iOS 13, macOS 10.15, *)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@available(iOS 13, macOS 10.15, *)
+public enum DataGroupId : Swift.Int, Swift.CaseIterable {
+  case COM
+  case DG1
+  case DG2
+  case DG3
+  case DG4
+  case DG5
+  case DG6
+  case DG7
+  case DG8
+  case DG9
+  case DG10
+  case DG11
+  case DG12
+  case DG13
+  case DG14
+  case DG15
+  case DG16
+  case SOD
+  case Unknown
+  public init?(rawValue: Swift.Int)
+  @available(iOS 13, macOS 10.15, *)
+  public typealias AllCases = [Onfido.DataGroupId]
+  @available(iOS 13, macOS 10.15, *)
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [Onfido.DataGroupId] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum DocumentFormat : Swift.Int {
+  case card
+  case folded
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc(ONDocumentResult) final public class DocumentResult : ObjectiveC.NSObject {
+  @objc(front) final public let front: Onfido.DocumentSideResult
+  @objc(back) final public let back: Onfido.DocumentSideResult?
+  @objc(typeSelected) final public let typeSelected: Swift.String
+  @objc(countrySelected) final public let countrySelected: Swift.String?
+  @objc(nfcMediaId) final public let nfcMediaId: Swift.String?
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONDocumentSideResult) final public class DocumentSideResult : ObjectiveC.NSObject {
+  @objc(id) final public let id: Swift.String
+  @objc deinit
+}
+@objc public enum SelectableDocumentType : Swift.Int, Swift.Equatable, Swift.Hashable, Swift.CaseIterable {
+  case passport
+  case drivingLicence
+  case identityCard
+  case residencePermit
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [Onfido.SelectableDocumentType]
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [Onfido.SelectableDocumentType] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension Onfido.SelectableDocumentType : Swift.Comparable {
+  public static func < (lhs: Onfido.SelectableDocumentType, rhs: Onfido.SelectableDocumentType) -> Swift.Bool
+}
+public enum DocumentType : Swift.Equatable, Swift.Hashable {
+  case passport(config: Onfido.PassportConfiguration?)
+  case drivingLicence(config: Onfido.DrivingLicenceConfiguration?)
+  case nationalIdentityCard(config: Onfido.NationalIdentityConfiguration?)
+  case residencePermit(config: Onfido.ResidencePermitConfiguration?)
+  case visa(config: Onfido.VisaConfiguration?)
+  case workPermit(config: Onfido.WorkPermitConfiguration?)
+  case generic(config: Onfido.GenericDocumentConfiguration?)
+  public static func == (a: Onfido.DocumentType, b: Onfido.DocumentType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Onfido.DocumentType : Swift.Comparable {
+  public static func < (lhs: Onfido.DocumentType, rhs: Onfido.DocumentType) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers @objc(ONDocumentTypeConfig) final public class DocumentTypeConfig : ObjectiveC.NSObject {
+  @objc public static func builder() -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+  @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class DocumentConfigBuilder : ObjectiveC.NSObject {
+    @discardableResult
+    @objc final public func withDocumentStep(selectableDocumentTypes: Foundation.NSArray) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @discardableResult
+    @objc final public func withPassport(config: Onfido.PassportConfiguration? = nil) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @discardableResult
+    @objc final public func withDrivingLicence(config: Onfido.DrivingLicenceConfiguration? = nil) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @discardableResult
+    @objc final public func withNationalIdentityCard(config: Onfido.NationalIdentityConfiguration? = nil) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @discardableResult
+    @objc final public func withResidencePermit(config: Onfido.ResidencePermitConfiguration? = nil) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @discardableResult
+    @objc final public func withVisa(config: Onfido.VisaConfiguration? = nil) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @discardableResult
+    @objc final public func withWorkPermit(config: Onfido.WorkPermitConfiguration? = nil) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @discardableResult
+    @objc final public func withGeneric(config: Onfido.GenericDocumentConfiguration? = nil) -> Onfido.DocumentTypeConfig.DocumentConfigBuilder
+    @objc final public func build() throws -> Onfido.DocumentTypeConfig
+    @objc deinit
+  }
+  @objc deinit
+}
+@objc(ONDrivingLicenceConfiguration) final public class DrivingLicenceConfiguration : Onfido.BaseDocumentConfiguration {
+  @objc public init(documentFormat: Onfido.DocumentFormat, country: Swift.String? = nil)
+  @objc public init(country: Swift.String)
+  @objc deinit
+}
+@objc(ONEncryptedBiometricTokenHandler) public protocol EncryptedBiometricTokenHandler {
+  @objc func onTokenRequested(customerUserHash: Swift.String, completion: @escaping (Swift.String) -> Swift.Void)
+  @objc func onTokenGenerated(customerUserHash: Swift.String, encryptedBiometricToken: Swift.String)
+}
+@_hasMissingDesignatedInitializers @objc(ONEnterpriseFeatures) final public class EnterpriseFeatures : ObjectiveC.NSObject {
+  @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  @objc public static func builder() -> Onfido.EnterpriseFeatures.Builder
+  @_inheritsConvenienceInitializers @objc(ONEnterpriseFeaturesBuilder) final public class Builder : ObjectiveC.NSObject {
+    @discardableResult
+    @objc final public func withHideOnfidoLogo(_ hideOnfidoLogo: Swift.Bool) -> Onfido.EnterpriseFeatures.Builder
+    @discardableResult
+    @objc final public func withCobrandingText(_ cobrandingText: Swift.String) -> Onfido.EnterpriseFeatures.Builder
+    @discardableResult
+    @objc final public func withCobrandingLogo(_ cobrandingLogoLightMode: UIKit.UIImage, cobrandingLogoDarkMode: UIKit.UIImage) -> Onfido.EnterpriseFeatures.Builder
+    @discardableResult
+    @objc final public func withDisableMobileSdkAnalytics(_ disableMobileSdkAnalytics: Swift.Bool) -> Onfido.EnterpriseFeatures.Builder
+    @objc final public func build() -> Onfido.EnterpriseFeatures
+    @objc override dynamic public init()
+    @objc deinit
+  }
+  @objc deinit
+}
+@available(iOS 13, macOS 10.15, *)
+public enum NFCPassportReaderError : Swift.Error {
+  case responseError(Swift.String, Swift.UInt8, Swift.UInt8)
+  case invalidResponse
+  case unexpectedError(any Swift.Error)
+  case nfcNotSupported
+  case noConnectedTag
+  case d087Malformed
+  case invalidResponseChecksum
+  case missingMandatoryFields
+  case cannotDecodeASN1Length
+  case invalidASN1(value: Swift.String)
+  case unableToProtectAPDU
+  case unableToUnprotectAPDU
+  case unsupportedDataGroup
+  case dataGroupNotRead
+  case headerNotRead
+  case unknownTag
+  case unknownImageFormat
+  case notImplemented
+  case tagNotValid
+  case connectionError
+  case userCanceled
+  case invalidMRZKey
+  case moreThanOneTagFound
+  case invalidHashAlgorithmSpecified
+  case unsupportedCipherAlgorithm
+  case unsupportedMappingType
+  case paceError(Swift.String, Swift.String)
+  case chipAuthenticationFailed
+  case invalidDataPassed(Swift.String)
+  case notYetSupported(Swift.String)
+  case noTagDetected
+}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.NFCPassportReaderError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+@available(iOS 13, macOS 10.15, *)
+public enum OpenSSLError : Swift.Error {
+  case UnableToGetX509CertificateFromPKCS7(Swift.String)
+  case UnableToVerifyX509CertificateForSOD(Swift.String)
+  case VerifyAndReturnSODEncapsulatedData(Swift.String)
+  case UnableToReadECPublicKey(Swift.String)
+  case UnableToExtractSignedDataFromPKCS7(Swift.String)
+  case VerifySignedAttributes(Swift.String)
+  case UnableToParseASN1(Swift.String)
+  case UnableToDecryptRSASignature(Swift.String)
+}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.OpenSSLError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum PassiveAuthenticationError : Swift.Error {
+  case UnableToParseSODHashes(Swift.String)
+  case InvalidDataGroupHash(Swift.String)
+  case SODMissing(Swift.String)
+}
+extension Onfido.PassiveAuthenticationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+@objc(ONFaceResultVariant) public enum FaceResultVariant : Swift.Int {
+  case photo, video, motion
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc(ONFaceResult) final public class FaceResult : ObjectiveC.NSObject {
+  @objc(id) final public let id: Swift.String
+  @objc(variant) final public let variant: Onfido.FaceResultVariant
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+public enum FaceStepVariant {
+  case photo(withConfiguration: Onfido.PhotoStepConfiguration?)
+  case video(withConfiguration: Onfido.VideoStepConfiguration?)
+  case motion(withConfiguration: Onfido.MotionStepConfiguration?)
+}
+@_hasMissingDesignatedInitializers @objc(ONFaceStepVariantConfig) final public class FaceStepVariantConfig : ObjectiveC.NSObject {
+  @objc public static func builder() -> Onfido.FaceStepVariantConfig.Builder
+  @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class Builder : ObjectiveC.NSObject {
+    @discardableResult
+    @objc final public func withVideoCapture(config: Onfido.VideoStepConfiguration? = nil) -> Onfido.FaceStepVariantConfig.Builder
+    @discardableResult
+    @objc final public func withPhotoCapture(config: Onfido.PhotoStepConfiguration? = nil) -> Onfido.FaceStepVariantConfig.Builder
+    @discardableResult
+    @objc final public func withMotion(config: Onfido.MotionStepConfiguration? = nil) -> Onfido.FaceStepVariantConfig.Builder
+    @objc final public func build() throws -> Onfido.FaceStepVariantConfig
+    @objc deinit
+  }
+  @objc deinit
+}
+@objc(ONDocumentPages) public enum DocumentPages : Swift.Int {
+  case single = 1
+  case frontAndBack = 2
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(ONGenericDocumentConfiguration) final public class GenericDocumentConfiguration : Onfido.BaseDocumentConfiguration {
+  @objc public init(country: Swift.String?)
+  @objc public init(title: Swift.String, subtitle: Swift.String? = nil, country: Swift.String?, pages: Onfido.DocumentPages) throws
+  @objc deinit
+}
+public struct IdNumberResult : Swift.Decodable, Swift.CustomStringConvertible {
+  public let type: Swift.String?
+  public let value: Swift.String?
+  public let stateCode: Swift.String?
+  public var description: Swift.String {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol MRTDReader {
+  func read(documentInfo: Onfido.MRTDDocumentInfo, preferredAccessControl: Onfido.MRTDAccessControl?, dataGroups: [Onfido.MRTDDataGroup]?, activeAuthenticationChallenge: [Swift.UInt8]?, delegate: (any Onfido.MRTDReaderDelegate)?, completionHandler: @escaping Onfido.MRTDReaderCompletionHandler)
+}
+public struct MRTDDocumentInfo {
+}
+public protocol MRTDData {
+  var com: [Swift.UInt8]? { get }
+  var sod: [Swift.UInt8]? { get }
+  var dg1: [Swift.UInt8]? { get }
+  var dg2: [Swift.UInt8]? { get }
+  var dg3: [Swift.UInt8]? { get }
+  var dg4: [Swift.UInt8]? { get }
+  var dg5: [Swift.UInt8]? { get }
+  var dg6: [Swift.UInt8]? { get }
+  var dg7: [Swift.UInt8]? { get }
+  var dg8: [Swift.UInt8]? { get }
+  var dg9: [Swift.UInt8]? { get }
+  var dg10: [Swift.UInt8]? { get }
+  var dg11: [Swift.UInt8]? { get }
+  var dg12: [Swift.UInt8]? { get }
+  var dg13: [Swift.UInt8]? { get }
+  var dg14: [Swift.UInt8]? { get }
+  var dg15: [Swift.UInt8]? { get }
+  var dg16: [Swift.UInt8]? { get }
+}
+public enum MRTDDataGroup : Swift.CaseIterable {
+  case com, sod
+  case dg1, dg2, dg3, dg4, dg5, dg6, dg7, dg8, dg9, dg10, dg11, dg12, dg13, dg14, dg15, dg16
+  public static func == (a: Onfido.MRTDDataGroup, b: Onfido.MRTDDataGroup) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [Onfido.MRTDDataGroup]
+  nonisolated public static var allCases: [Onfido.MRTDDataGroup] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public typealias MRTDReaderCompletionHandler = (Swift.Result<any Onfido.MRTDData, any Swift.Error>) -> Swift.Void
+public enum MRTDAccessControl {
+  case bac, pace
+  public static func == (a: Onfido.MRTDAccessControl, b: Onfido.MRTDAccessControl) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum MRTDAccessControlResult {
+  case success, failure
+  public static func == (a: Onfido.MRTDAccessControlResult, b: Onfido.MRTDAccessControlResult) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol MRTDReaderDelegate : AnyObject {
+  func sessionStarted()
+  func sessionFinished()
+  func documentDetected()
+  func documentLost()
+  func accessControlStarted(accessControl: Onfido.MRTDAccessControl)
+  func accessControlFinished(result: Onfido.MRTDAccessControlResult, accessControl: Onfido.MRTDAccessControl)
+  func readStarted()
+  func readProgress(percent: Swift.Int)
+}
+@objc(ONMediaCallback) public protocol MediaCallback {
+  @objc func onMediaCaptured(result: any Onfido.MediaResult)
+}
+@objc(ONMediaResult) public protocol MediaResult {
+}
+@_hasMissingDesignatedInitializers @objc(ONMediaDocumentResult) final public class MediaDocumentResult : ObjectiveC.NSObject, Onfido.MediaResult {
+  @objc final public let metadata: Onfido.DocumentMetadata
+  @objc final public let file: Onfido.MediaFile
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONDocumentMetadata) final public class DocumentMetadata : ObjectiveC.NSObject {
+  @objc final public let side: Swift.String
+  @objc final public let type: Swift.String
+  @objc final public let issuingCountry: Swift.String?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONSelfieResult) final public class SelfieResult : ObjectiveC.NSObject, Onfido.MediaResult {
+  @objc final public let file: Onfido.MediaFile
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONLivenessResult) final public class LivenessResult : ObjectiveC.NSObject, Onfido.MediaResult {
+  @objc final public let file: Onfido.MediaFile
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONMediaFile) final public class MediaFile : ObjectiveC.NSObject {
+  @objc final public let fileData: Foundation.Data
+  @objc final public let fileName: Swift.String
+  @objc final public let fileType: Swift.String
+  public enum FileType : Swift.String {
+    case image
+    case video
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  @objc deinit
+}
+@objc(ONMotionStepConfiguration) final public class MotionStepConfiguration : ObjectiveC.NSObject {
+  @objc public init(showIntro: Swift.Bool)
+  @objc public init(recordAudio: Swift.Bool)
+  @objc public init(showIntro: Swift.Bool, recordAudio: Swift.Bool)
+  @objc deinit
+}
+@objc(ONNFCConfiguration) public enum NFCConfiguration : Swift.Int, Swift.CustomStringConvertible {
+  case off = 0
+  case optional = 1
+  case required = 2
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum LogLevel : Swift.Int, Swift.CaseIterable {
+  case verbose
+  case debug
+  case info
+  case warning
+  case error
+  case none
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [Onfido.LogLevel]
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [Onfido.LogLevel] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum PassportAuthenticationStatus {
+  case notDone
+  case success
+  case failed
+  public static func == (a: Onfido.PassportAuthenticationStatus, b: Onfido.PassportAuthenticationStatus) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@available(iOS 13, macOS 10.15, *)
+public enum NFCViewDisplayMessage {
+  case requestPresentDocument
+  case authenticatingWithPassport(Swift.Int)
+  case readingDataGroupProgress(Onfido.DataGroupId, Swift.Int)
+  case error(Onfido.NFCPassportReaderError)
+  case successfulRead
+  case tagConnectionLost
+}
+@objc(ONNationalIdentityConfiguration) final public class NationalIdentityConfiguration : Onfido.BaseDocumentConfiguration {
+  @objc public init(documentFormat: Onfido.DocumentFormat, country: Swift.String?)
+  @objc public init(country: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONAddressResult) final public class ONAddressResult : ObjectiveC.NSObject {
+  @objc(flatNumber) final public var flatNumber: Swift.String? {
+    @objc get
+  }
+  @objc(buildingNumber) final public var buildingNumber: Swift.String? {
+    @objc get
+  }
+  @objc(buildingName) final public var buildingName: Swift.String? {
+    @objc get
+  }
+  @objc(street) final public var street: Swift.String? {
+    @objc get
+  }
+  @objc(subStreet) final public var subStreet: Swift.String? {
+    @objc get
+  }
+  @objc(town) final public var town: Swift.String? {
+    @objc get
+  }
+  @objc(state) final public var state: Swift.String? {
+    @objc get
+  }
+  @objc(postcode) final public var postcode: Swift.String? {
+    @objc get
+  }
+  @objc(country) final public var country: Swift.String? {
+    @objc get
+  }
+  @objc(startDate) final public var startDate: Foundation.Date? {
+    @objc get
+  }
+  @objc(endDate) final public var endDate: Foundation.Date? {
+    @objc get
+  }
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONFlow) final public class ONFlow : ObjectiveC.NSObject {
+  @objc convenience public init(withFlowConfiguration flowConfiguration: Onfido.ONFlowConfig)
+  @objc convenience public init(withWorkflowConfiguration workflowConfiguration: Onfido.WorkflowConfiguration)
+  @objc final public func run(from viewController: UIKit.UIViewController, animated flag: Swift.Bool = true, completion: (() -> Swift.Void)? = nil) throws
+  @objc final public func run(from viewController: UIKit.UIViewController, presentationStyle modalPresentationStyle: UIKit.UIModalPresentationStyle, animated flag: Swift.Bool = true, completion: (() -> Swift.Void)? = nil) throws
+  @discardableResult
+  @objc final public func with(responseHandler: @escaping (Onfido.ONFlowResponse) -> Swift.Void) -> Onfido.ONFlow
+  @discardableResult
+  @objc final public func with(responseHandler: @escaping (Onfido.ONFlowResponse) -> Swift.Void, dismissFlowOnCompletion: Swift.Bool) -> Onfido.ONFlow
+  @discardableResult
+  @objc final public func with(eventHandler: @escaping (Onfido.Event) -> Swift.Void) -> Onfido.ONFlow
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONFlowConfig) final public class ONFlowConfig : ObjectiveC.NSObject {
+  @objc(builder) public static func builder() -> Onfido.ONFlowConfigBuilder
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(ONFlowConfigBuilder) final public class ONFlowConfigBuilder : ObjectiveC.NSObject {
+  @objc final public func with(sdkToken: Swift.String)
+  @objc final public func with(sdkToken: Swift.String, expireHandler: @escaping Onfido.SDKTokenExpirationHandler)
+  @objc final public func with(mediaCallback: any Onfido.MediaCallback)
+  @objc final public func withWelcomeStep()
+  @objc final public func withDocumentStep()
+  @objc final public func withDocumentStep(ofType config: Onfido.DocumentTypeConfig)
+  @objc final public func withGenericDocuments(additionalTypes genericConfig: [Onfido.GenericDocumentConfiguration])
+  @objc final public func withFaceStep(ofVariant variant: Onfido.FaceStepVariantConfig)
+  @objc final public func withCustomLocalization()
+  @objc final public func withCustomLocalization(withTableName tableName: Swift.String)
+  @objc final public func withCustomLocalization(withTableName tableName: Swift.String, in bundle: Foundation.Bundle)
+  @objc final public func withAppearance(_ appearance: Onfido.Appearance)
+  @objc final public func withEnterpriseFeatures(_ enterpriseFeatures: Onfido.EnterpriseFeatures)
+  @objc final public func withCertificatePinningConfiguration(_ configuration: Onfido.CertificatePinningConfiguration)
+  @available(*, deprecated, message: "Use withNFC() instead")
+  @objc final public func disableNFC()
+  @objc final public func withNFC(_ nfc: Onfido.NFCConfiguration)
+  @objc final public func withProofOfAddressStep()
+  @objc final public func build() throws -> Onfido.ONFlowConfig
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(ONFlowConfigError) public enum ONFlowConfigError : Swift.Int {
+  case missingSDKToken
+  case invalidSDKToken
+  case missingSteps
+  case invalidDocumentFormatAndCountryCombination
+  case invalidCountryCode
+  case enterpriseFeaturesNotAuthorized
+  case selectedEnterpriseFeatureNotAuthorized
+  case enterpriseFeatureProvidedWithMobileToken
+  case invalidDocumentTitle
+  case duplicateGenericDocument
+  case invalidCustomTranslations
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(ONFlowError) public enum ONFlowError : Swift.Int {
+  case cameraPermission
+  case microphonePermission
+  case upload
+  case exception
+  case failedToWriteToDisk
+  case invalidImageData
+  case versionInsufficient
+  case studioTaskAbandoned
+  case studioTaskError
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc(ONFlowResponse) final public class ONFlowResponse : ObjectiveC.NSObject {
+  @objc final public var results: [Onfido.ONFlowResult]?
+  @objc final public var error: Foundation.NSError?
+  @objc final public var userCanceled: Onfido.ONFlowCancellation?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONFlowCancellation) final public class ONFlowCancellation : ObjectiveC.NSObject {
+  @objc final public let reason: Onfido.CancellationReason
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONFlowResult) final public class ONFlowResult : ObjectiveC.NSObject {
+  @objc final public let type: Onfido.ONFlowResultType
+  @objc final public var result: Swift.AnyObject
+  @objc deinit
+}
+@objc(ONFlowResultType) public enum ONFlowResultType : Swift.Int {
+  case document
+  case face
+  case proofOfAddress
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc(ONIdNumberResult) final public class ONIdNumberResult : ObjectiveC.NSObject {
+  @objc(type) final public var type: Swift.String? {
+    @objc get
+  }
+  @objc(value) final public var value: Swift.String? {
+    @objc get
+  }
+  @objc(stateCode) final public var stateCode: Swift.String? {
+    @objc get
+  }
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+public struct OnfidoApiError : Swift.Error, Swift.CustomStringConvertible, Swift.Decodable, Swift.Equatable {
+  public let id: Swift.String?
+  public let type: Swift.String
+  public let message: Swift.String
+  public let fields: Swift.String?
+  public let detailedFields: [Swift.String : [Swift.String]]?
+  public init(from decoder: any Swift.Decoder) throws
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: Onfido.OnfidoApiError, b: Onfido.OnfidoApiError) -> Swift.Bool
+}
+public struct OnfidoConfig {
+  public static func builder() -> Onfido.OnfidoConfigBuilder
+}
+public typealias SDKTokenExpirationHandler = (@escaping (Swift.String) -> Swift.Void) -> Swift.Void
+@_hasMissingDesignatedInitializers final public class OnfidoConfigBuilder {
+  @discardableResult
+  final public func withMediaCallback(mediaCallback: any Onfido.MediaCallback) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withSDKToken(_ token: Swift.String, expireHandler: Onfido.SDKTokenExpirationHandler? = nil) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withWelcomeStep() -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withDocumentStep() -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withDocumentStep(ofSelectableTypes types: [Onfido.SelectableDocumentType]) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withDocumentStep(type: Onfido.DocumentType) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withGenericDocuments(additionalTypes genericTypes: [Onfido.GenericDocumentConfiguration]) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withDocumentStep(ofType: Onfido.DocumentType) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withProofOfAddressStep() -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withFaceStep(ofVariant variant: Onfido.FaceStepVariant) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withCustomLocalization(andTableName tableName: Swift.String = "Localizable", in bundle: Foundation.Bundle = Bundle.main) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withAdditionalConfig(value: Any, for key: Swift.String) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withAppearance(_ appearance: Onfido.Appearance) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withCertificatePinning(_ configuration: Onfido.CertificatePinningConfiguration) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withEnterpriseFeatures(_ enterpriseFeatures: Onfido.EnterpriseFeatures) -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  @available(*, deprecated, message: "Use withNFC() instead")
+  final public func disableNFC() -> Onfido.OnfidoConfigBuilder
+  @discardableResult
+  final public func withNFC(_ nfc: Onfido.NFCConfiguration) -> Onfido.OnfidoConfigBuilder
+  final public func build() throws -> Onfido.OnfidoConfig
+  @objc deinit
+}
+public enum OnfidoConfigError : Swift.Error, Swift.Equatable {
+  case missingSDKToken
+  case invalidSDKToken
+  case missingSteps
+  case invalidDocumentFormatAndCountryCombination
+  case invalidCountryCode
+  case enterpriseFeaturesNotAuthorized
+  case selectedEnterpriseFeatureNotAuthorized
+  case invalidDocumentTitle
+  case duplicateGenericDocument
+  case invalidCustomTranslations(Swift.String)
+  public static func == (a: Onfido.OnfidoConfigError, b: Onfido.OnfidoConfigError) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers @objc final public class Event : ObjectiveC.NSObject {
+  @objc final public let name: Swift.String
+  @objc final public let properties: [Swift.String : Any]
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+final public class OnfidoFlow {
+  public typealias ResponseHandler = (Onfido.OnfidoResponse) -> Swift.Void
+  public typealias EventHandler = (Onfido.Event) -> Swift.Void
+  public init(withConfiguration config: Onfido.OnfidoConfig)
+  public init(workflowConfiguration: Onfido.WorkflowConfiguration)
+  @discardableResult
+  final public func with(responseHandler: @escaping Onfido.OnfidoFlow.ResponseHandler, dismissFlowOnCompletion: Swift.Bool = true) -> Onfido.OnfidoFlow
+  @discardableResult
+  final public func with(eventHandler: @escaping Onfido.OnfidoFlow.EventHandler) -> Onfido.OnfidoFlow
+  final public func run(from viewController: UIKit.UIViewController, presentationStyle modalPresentationStyle: UIKit.UIModalPresentationStyle? = nil, animated flag: Swift.Bool = true, completion: (() -> Swift.Void)? = nil) throws
+  @objc deinit
+}
+public enum OnfidoFlowError : Swift.Error, Swift.Equatable {
+  case cameraPermission
+  case microphonePermission
+  case upload(Onfido.OnfidoApiError)
+  case exception(withError: (any Swift.Error)?, withMessage: Swift.String?)
+  case failedToWriteToDisk
+  case invalidImageData
+  case versionInsufficient
+  case studioTaskAbandoned
+  case studioTaskError
+  public static func == (lhs: Onfido.OnfidoFlowError, rhs: Onfido.OnfidoFlowError) -> Swift.Bool
+}
+public enum OnfidoResponse {
+  case success([Onfido.OnfidoResult])
+  case cancel(Onfido.CancellationReason)
+  case error(any Swift.Error)
+}
+public enum OnfidoResult {
+  case document(Onfido.DocumentResult)
+  case face(Onfido.FaceResult)
+  case proofOfAddress(Onfido.ProofOfAddressResult)
+  public var debugString: Swift.String {
+    get
+  }
+}
+public func == (lhs: Onfido.OnfidoResult, rhs: Onfido.OnfidoResult) -> Swift.Bool
+@available(iOS 13, *)
+public enum PACEAccessKey {
+  case mrz(Swift.String)
+  case can(Swift.String)
+}
+public enum PACEMappingType {
+  case GM
+  case IM
+  case CAM
+  public static func == (a: Onfido.PACEMappingType, b: Onfido.PACEMappingType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc(ONPassportConfiguration) final public class PassportConfiguration : Onfido.BaseDocumentConfiguration {
+  @objc public init(country: Swift.String? = nil)
+  @objc deinit
+}
+public struct PassportReaderOptions {
+  public init(skipSecureElements: Swift.Bool = true, skipCA: Swift.Bool = false, skipPACE: Swift.Bool = false, usePACEPolling: Swift.Bool = true)
+}
+@_inheritsConvenienceInitializers @objc(ONPhotoStepConfiguration) final public class PhotoStepConfiguration : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public init(showSelfieIntroScreen: Swift.Bool)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONProofOfAddressResult) final public class ProofOfAddressResult : ObjectiveC.NSObject {
+  @objc(front) final public let front: Onfido.ProofOfAddressSideResult
+  @objc(back) final public let back: Onfido.ProofOfAddressSideResult?
+  @objc(type) final public let type: Swift.String
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(ONProofOfAddressSideResult) final public class ProofOfAddressSideResult : ObjectiveC.NSObject {
+  @objc(id) final public let id: Swift.String
+  @objc(type) final public let type: Swift.String?
+  @objc deinit
+}
+@objc(ONResidencePermitConfiguration) final public class ResidencePermitConfiguration : Onfido.BaseDocumentConfiguration {
+  @objc public init(country: Swift.String)
+  @objc deinit
+}
+public enum SecureMessagingSupportedAlgorithms {
+  case DES
+  case AES
+  public static func == (a: Onfido.SecureMessagingSupportedAlgorithms, b: Onfido.SecureMessagingSupportedAlgorithms) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc(ONVideoStepConfiguration) final public class VideoStepConfiguration : ObjectiveC.NSObject {
+  @objc public init(showIntroVideo: Swift.Bool, manualLivenessCapture: Swift.Bool)
+  @objc deinit
+}
+@objc(ONVisaConfiguration) final public class VisaConfiguration : Onfido.BaseDocumentConfiguration {
+  @objc public init(country: Swift.String)
+  @objc deinit
+}
+@objc(ONWorkPermitConfiguration) final public class WorkPermitConfiguration : Onfido.BaseDocumentConfiguration {
+  @objc public init(country: Swift.String)
+  @objc deinit
+}
+@objc(ONWorkflowConfiguration) final public class WorkflowConfiguration : ObjectiveC.NSObject {
+  @discardableResult
+  @objc final public func withAppearance(_ appearance: Onfido.Appearance) -> Onfido.WorkflowConfiguration
+  @discardableResult
+  @objc final public func withEnterpriseFeatures(_ enterpriseFeatures: Onfido.EnterpriseFeatures) -> Onfido.WorkflowConfiguration
+  @discardableResult
+  @objc final public func withCustomLocalization(withTableName tableName: Swift.String, in bundle: Foundation.Bundle) -> Onfido.WorkflowConfiguration
+  @discardableResult
+  @objc final public func withMediaCallback(mediaCallback: any Onfido.MediaCallback) -> Onfido.WorkflowConfiguration
+  @discardableResult
+  @objc final public func withTokenExpirationHandler(handler: @escaping Onfido.SDKTokenExpirationHandler) -> Onfido.WorkflowConfiguration
+  @discardableResult
+  @objc final public func withEncryptedBiometricTokenHandler(handler: any Onfido.EncryptedBiometricTokenHandler) -> Onfido.WorkflowConfiguration
+  @discardableResult
+  final public func withAdditionalConfig(value: Any, for key: Swift.String) -> Onfido.WorkflowConfiguration
+  @objc public init(workflowRunId: Swift.String, sdkToken: Swift.String)
+  @objc deinit
+}
+@available(iOS 13, macOS 10.15, *)
+public enum CertificateType {
+  case documentSigningCertificate
+  case issuerSigningCertificate
+  public static func == (a: Onfido.CertificateType, b: Onfido.CertificateType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@available(iOS 13, macOS 10.15, *)
+public enum CertificateItem : Swift.String {
+  case fingerprint
+  case issuerName
+  case subjectName
+  case serialNumber
+  case signatureAlgorithm
+  case publicKeyAlgorithm
+  case notBefore
+  case notAfter
+  public init?(rawValue: Swift.String)
+  @available(iOS 13, macOS 10.15, *)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension Onfido.CancellationReason : Swift.Equatable {}
+extension Onfido.CancellationReason : Swift.Hashable {}
+extension Onfido.CancellationReason : Swift.RawRepresentable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.DocTypeEnum : Swift.Equatable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.DocTypeEnum : Swift.Hashable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.DocTypeEnum : Swift.RawRepresentable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.DataGroupId : Swift.Equatable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.DataGroupId : Swift.Hashable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.DataGroupId : Swift.RawRepresentable {}
+extension Onfido.MRTDAccessControl : Swift.Equatable {}
+extension Onfido.MRTDAccessControl : Swift.Hashable {}
+extension Onfido.DocumentFormat : Swift.Equatable {}
+extension Onfido.DocumentFormat : Swift.Hashable {}
+extension Onfido.DocumentFormat : Swift.RawRepresentable {}
+extension Onfido.SelectableDocumentType : Swift.RawRepresentable {}
+extension Onfido.FaceResultVariant : Swift.Equatable {}
+extension Onfido.FaceResultVariant : Swift.Hashable {}
+extension Onfido.FaceResultVariant : Swift.RawRepresentable {}
+extension Onfido.DocumentPages : Swift.Equatable {}
+extension Onfido.DocumentPages : Swift.Hashable {}
+extension Onfido.DocumentPages : Swift.RawRepresentable {}
+extension Onfido.MRTDDataGroup : Swift.Equatable {}
+extension Onfido.MRTDDataGroup : Swift.Hashable {}
+extension Onfido.MRTDAccessControlResult : Swift.Equatable {}
+extension Onfido.MRTDAccessControlResult : Swift.Hashable {}
+extension Onfido.MediaFile.FileType : Swift.Equatable {}
+extension Onfido.MediaFile.FileType : Swift.Hashable {}
+extension Onfido.MediaFile.FileType : Swift.RawRepresentable {}
+extension Onfido.NFCConfiguration : Swift.Equatable {}
+extension Onfido.NFCConfiguration : Swift.Hashable {}
+extension Onfido.NFCConfiguration : Swift.RawRepresentable {}
+extension Onfido.LogLevel : Swift.Equatable {}
+extension Onfido.LogLevel : Swift.Hashable {}
+extension Onfido.LogLevel : Swift.RawRepresentable {}
+extension Onfido.PassportAuthenticationStatus : Swift.Equatable {}
+extension Onfido.PassportAuthenticationStatus : Swift.Hashable {}
+extension Onfido.ONFlowConfigError : Swift.Equatable {}
+extension Onfido.ONFlowConfigError : Swift.Hashable {}
+extension Onfido.ONFlowConfigError : Swift.RawRepresentable {}
+extension Onfido.ONFlowError : Swift.Equatable {}
+extension Onfido.ONFlowError : Swift.Hashable {}
+extension Onfido.ONFlowError : Swift.RawRepresentable {}
+extension Onfido.ONFlowResultType : Swift.Equatable {}
+extension Onfido.ONFlowResultType : Swift.Hashable {}
+extension Onfido.ONFlowResultType : Swift.RawRepresentable {}
+extension Onfido.PACEMappingType : Swift.Equatable {}
+extension Onfido.PACEMappingType : Swift.Hashable {}
+extension Onfido.SecureMessagingSupportedAlgorithms : Swift.Equatable {}
+extension Onfido.SecureMessagingSupportedAlgorithms : Swift.Hashable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.CertificateType : Swift.Equatable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.CertificateType : Swift.Hashable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.CertificateItem : Swift.Equatable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.CertificateItem : Swift.Hashable {}
+@available(iOS 13, macOS 10.15, *)
+extension Onfido.CertificateItem : Swift.RawRepresentable {}
