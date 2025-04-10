@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
   spec.platform = :ios, '15.0'
   spec.ios.deployment_target = '15.0'
   spec.name = "OnfidoSdk"
-  spec.version = "0.0.1"
+  spec.version = "0.0.2"
   spec.summary = "iOS framework for ID Biometric Verification"
   spec.description = "This is framework for Biometric Verification Wrapper."
   spec.homepage = "https://github.com/Vanilla-Tech/onfido-sdk-ios-framework-distribution"
