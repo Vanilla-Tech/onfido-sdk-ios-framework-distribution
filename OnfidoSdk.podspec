@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.summary = "iOS framework for ID Biometric Verification"
   spec.description = "This is framework for Biometric Verification Wrapper."
   spec.homepage = "https://github.com/Vanilla-Tech/onfido-sdk-ios-framework-distribution"
-  spec.license = { :type => "MIT", :file => "LICENSE" } # Or your actual license
+  # spec.license = { :type => "MIT", :file => "LICENSE" } # Or your actual license
   spec.author = { "Suresh Byanjankar" => "suresh@8squarei.com" }
   spec.source = { :git => "https://github.com/Vanilla-Tech/onfido-sdk-ios-framework-distribution.git", :tag => "#{spec.version}" }
   spec.swift_versions = ['5.5'] # Or whatever versions you support.
