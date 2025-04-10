@@ -1,0 +1,80 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios15.6 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature OpaqueTypeErasure -enable-bare-slash-regex -module-name OnfidoSDK
+import AVFoundation
+import Foundation
+import Onfido
+@_exported import OnfidoSDK
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol IDVerificationSdkDelegate : AnyObject {
+  func getHeaders() -> [Swift.String : Swift.String]
+  func refreshToken(completion: @escaping (Swift.String?) -> Swift.Void)
+  func onOnfidoError(error: OnfidoSDK.IDVerificationError)
+  func onOnfidoSuccess(onfidoProcessResponse: OnfidoSDK.OnfidoProcessResponse)
+  func onOnfidoCancelled()
+}
+public struct IdBiometricVerificationConfig {
+  public let baseURL: Swift.String
+  public let generateSdkTokenPath: Swift.String
+  public let processURLPath: Swift.String
+  public init(baseURL: Swift.String, generateSdkTokenPath: Swift.String, processURLPath: Swift.String)
+}
+@_hasMissingDesignatedInitializers public class IdBiometricVerification {
+  public static var shared: OnfidoSDK.IdBiometricVerification
+  weak public var delegate: (any OnfidoSDK.IDVerificationSdkDelegate)?
+  weak public var hostViewController: UIKit.UIViewController?
+  public var config: OnfidoSDK.IdBiometricVerificationConfig?
+  public var baseURL: Swift.String
+  public var generateSdkTokenPath: Swift.String
+  public var processURLPath: Swift.String
+  public func configure(config: OnfidoSDK.IdBiometricVerificationConfig, hostVC: UIKit.UIViewController)
+  public func startLoadingView()
+  public func start(completion: @escaping (Swift.Result<OnfidoSDK.OnfidoProcessResponse, any Swift.Error>) -> Swift.Void)
+  @objc deinit
+}
+public func debugLog(_ message: Swift.String, file: Swift.String = #file, function: Swift.String = #function, line: Swift.Int = #line)
+public enum IDVerificationErrorType : Swift.Int {
+  case unknown
+  case networkError
+  case authorizationFailed
+  case unableToDecode
+  case badRequest
+  case unauthorized
+  case forbidden
+  case notFound
+  case serverError
+  case camerPermissionDenied
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct IDVerificationError : Swift.Error {
+  public let type: OnfidoSDK.IDVerificationErrorType
+  public let message: Swift.String
+}
+public struct OnfidoProcess : Swift.Codable {
+  public var registrationStep: Swift.Int?
+  public var nextStep: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct OnfidoProcessResponse : Swift.Codable {
+  public let processBody: OnfidoSDK.OnfidoProcess?
+  public let status: Swift.Int?, messageType: Swift.Int?
+  public let errors: [OnfidoSDK.OnfidoError]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct OnfidoError : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension OnfidoSDK.IDVerificationErrorType : Swift.Equatable {}
+extension OnfidoSDK.IDVerificationErrorType : Swift.Hashable {}
+extension OnfidoSDK.IDVerificationErrorType : Swift.RawRepresentable {}
