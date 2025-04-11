@@ -330,6 +330,7 @@ SWIFT_CLASS_NAMED("Appearance")
 
 
 
+
 SWIFT_CLASS_NAMED("BackgroundColor")
 @interface ONBackgroundColor : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -595,7 +596,11 @@ SWIFT_CLASS_NAMED("MotionStepConfiguration")
 @interface ONMotionStepConfiguration : NSObject
 - (nonnull instancetype)initWithShowIntro:(BOOL)showIntro OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithRecordAudio:(BOOL)recordAudio OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithIsTestEnv:(BOOL)isTestEnv OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithShowIntro:(BOOL)showIntro recordAudio:(BOOL)recordAudio OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithShowIntro:(BOOL)showIntro isTestEnv:(BOOL)isTestEnv OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithRecordAudio:(BOOL)recordAudio isTestEnv:(BOOL)isTestEnv OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithShowIntro:(BOOL)showIntro recordAudio:(BOOL)recordAudio isTestEnv:(BOOL)isTestEnv OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end

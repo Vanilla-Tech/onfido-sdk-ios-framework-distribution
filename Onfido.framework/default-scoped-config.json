@@ -17,7 +17,9 @@
           "polling_ms": 100
         },
         "ios_pace_polling": true
-      }
+      },
+      "secure_elements": false,
+      "chip_authentication": true
     },
     "processors": {
       "barcode": {
@@ -143,10 +145,10 @@
       "scope": { "type": ["NIC", "REP"], "country": ["FRA", "HUN", "POL"] },
       "config": { "nfc": { "access_control": { "ios_pace_polling": true }}}
     }, {
-      "scope": { "type": ["NIC", "REP"], "country": ["ARE", "DEU", "ITA", "LVA", "MNE", "NLD"] },
+      "scope": { "type": ["NIC", "REP"], "country": ["ARE", "CHL", "DEU", "ITA", "LVA", "MNE", "NLD"] },
       "config": { "nfc": { "access_control": { "ios_pace_polling": false }}}
     }, {
-      "scope": { "type": ["NIC", "REP"], "country": ["ITA"] },
+      "scope": { "type": ["NIC", "REP"], "country": ["CHL", "ITA"] },
       "config": { "nfc": { "access_control": { "mechanism": "bac" }}}
     }, {
       "scope": { "type": ["NIC", "REP"], "country": ["ARE"] },

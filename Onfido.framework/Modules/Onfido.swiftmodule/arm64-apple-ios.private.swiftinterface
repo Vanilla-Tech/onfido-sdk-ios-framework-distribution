@@ -302,10 +302,11 @@ public enum NFCPassportReaderError : Swift.Error {
   case unsupportedCipherAlgorithm
   case unsupportedMappingType
   case paceError(Swift.String, Swift.String)
-  case chipAuthenticationFailed
+  case chipAuthenticationFailed(Swift.String)
   case invalidDataPassed(Swift.String)
   case notYetSupported(Swift.String)
   case noTagDetected
+  case activeAuthenticationFailed(Swift.String)
 }
 @available(iOS 13, macOS 10.15, *)
 extension Onfido.NFCPassportReaderError : Foundation.LocalizedError {
@@ -398,10 +399,21 @@ public struct IdNumberResult : Swift.Decodable, Swift.CustomStringConvertible {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
+public enum MRTDReaderBuilder {
+  public static func build() -> any Onfido.MRTDReader
+}
 public protocol MRTDReader {
-  func read(documentInfo: Onfido.MRTDDocumentInfo, preferredAccessControl: Onfido.MRTDAccessControl?, dataGroups: [Onfido.MRTDDataGroup]?, activeAuthenticationChallenge: [Swift.UInt8]?, delegate: (any Onfido.MRTDReaderDelegate)?, completionHandler: @escaping Onfido.MRTDReaderCompletionHandler)
+  func read(documentInfo: Onfido.MRTDDocumentInfo, preferredAccessControl: Onfido.MRTDAccessControl?, dataGroups: [Onfido.MRTDDataGroup]?, activeAuthenticationChallenge: [Swift.UInt8]?, chipAuthentication: Swift.Bool?, delegate: (any Onfido.MRTDReaderDelegate)?, completionHandler: @escaping Onfido.MRTDReaderCompletionHandler)
+  var alertMessage: Swift.String { get set }
+  func cancelSession(_ message: Swift.String?)
+}
+extension Onfido.MRTDReader {
+  public func read(documentInfo: Onfido.MRTDDocumentInfo, preferredAccessControl: Onfido.MRTDAccessControl? = nil, dataGroups: [Onfido.MRTDDataGroup]? = nil, activeAuthenticationChallenge: [Swift.UInt8]? = nil, chipAuthentication: Swift.Bool? = nil, delegate: (any Onfido.MRTDReaderDelegate)? = nil, completionHandler: @escaping Onfido.MRTDReaderCompletionHandler)
+  public func cancelSession()
 }
 public struct MRTDDocumentInfo {
+  public init(documentCode: Swift.String, countryCode: Swift.String, documentNumber: Swift.String, birthDate: Swift.String, expiryDate: Swift.String)
+  public init(documentCode: Swift.String, countryCode: Swift.String, documentNumber: Swift.String, birthDate: Foundation.Date, expiryDate: Foundation.Date)
 }
 public protocol MRTDData {
   var com: [Swift.UInt8]? { get }
@@ -453,6 +465,14 @@ public enum MRTDAccessControlResult {
     get
   }
 }
+public enum MRTDVerificationType : Swift.String {
+  case activeAuthentication, chipAuthentication
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
 public protocol MRTDReaderDelegate : AnyObject {
   func sessionStarted()
   func sessionFinished()
@@ -462,6 +482,8 @@ public protocol MRTDReaderDelegate : AnyObject {
   func accessControlFinished(result: Onfido.MRTDAccessControlResult, accessControl: Onfido.MRTDAccessControl)
   func readStarted()
   func readProgress(percent: Swift.Int)
+  func verificationStarted(type: Onfido.MRTDVerificationType)
+  func verificationFinished(type: Onfido.MRTDVerificationType, result: Swift.Result<[Swift.UInt8]?, any Swift.Error>)
 }
 @objc(ONMediaCallback) public protocol MediaCallback {
   @objc func onMediaCaptured(result: any Onfido.MediaResult)
@@ -505,7 +527,11 @@ public protocol MRTDReaderDelegate : AnyObject {
 @objc(ONMotionStepConfiguration) final public class MotionStepConfiguration : ObjectiveC.NSObject {
   @objc public init(showIntro: Swift.Bool)
   @objc public init(recordAudio: Swift.Bool)
+  @objc public init(isTestEnv: Swift.Bool)
   @objc public init(showIntro: Swift.Bool, recordAudio: Swift.Bool)
+  @objc public init(showIntro: Swift.Bool, isTestEnv: Swift.Bool)
+  @objc public init(recordAudio: Swift.Bool, isTestEnv: Swift.Bool)
+  @objc public init(showIntro: Swift.Bool, recordAudio: Swift.Bool, isTestEnv: Swift.Bool)
   @objc deinit
 }
 @objc(ONNFCConfiguration) public enum NFCConfiguration : Swift.Int, Swift.CustomStringConvertible {
@@ -958,6 +984,9 @@ extension Onfido.DataGroupId : Swift.Hashable {}
 extension Onfido.DataGroupId : Swift.RawRepresentable {}
 extension Onfido.MRTDAccessControl : Swift.Equatable {}
 extension Onfido.MRTDAccessControl : Swift.Hashable {}
+extension Onfido.MRTDVerificationType : Swift.Equatable {}
+extension Onfido.MRTDVerificationType : Swift.Hashable {}
+extension Onfido.MRTDVerificationType : Swift.RawRepresentable {}
 extension Onfido.DocumentFormat : Swift.Equatable {}
 extension Onfido.DocumentFormat : Swift.Hashable {}
 extension Onfido.DocumentFormat : Swift.RawRepresentable {}
